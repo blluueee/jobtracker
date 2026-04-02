@@ -1,0 +1,19 @@
+# Node
+node_modules/
+npm-debug.log
+
+# Env
+.env
+.env.*
+
+# Build
+dist/
+build/
+.next/
+
+# OS
+.DS_Store
+
+# Logs
+logs/
+*.log
