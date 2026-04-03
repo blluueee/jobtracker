@@ -12,18 +12,16 @@ export const createTenant = async (req: Request, res: Response) => {
     const dbUrl = `postgresql://postgres:post39@localhost:5432/${dbName}`;
 
     const existing = await globalPrisma.tenant.findUnique({
-  where: { slug },
-});
+      where: { slug },
+    });
 
-if (existing) {
-  return res.status(400).json({ error: "Tenant already exists" });
-}
+    if (existing) {
+      return res.status(400).json({ error: "Tenant already exists" });
+    }
     console.log("🚀 Creating tenant:", slug);
 
     // 1️⃣ Create database
-    await globalPrisma.$executeRawUnsafe(
-      `CREATE DATABASE "${dbName}";`
-    );
+    await globalPrisma.$executeRawUnsafe(`CREATE DATABASE "${dbName}";`);
 
     console.log("✅ Database created:", dbName);
 

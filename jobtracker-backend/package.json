@@ -10,7 +10,7 @@
     "prisma:generate": "prisma generate",
     "prisma:migrate": "prisma migrate dev",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "migrate:tenants": "ts-node src/scripts/migrate-tenants.ts"
+    "migrate:tenants": "ts-node src/scripts/migrateTenantsToPartition.ts"
   },
   "keywords": [],
   "author": "",
@@ -26,6 +26,7 @@
     "cors": "^2.8.6",
     "dotenv": "^17.3.1",
     "express": "^5.2.1",
+    "node-cron": "^4.2.1",
     "zod": "^4.3.6"
   },
   "devDependencies": {

@@ -35,12 +35,12 @@ model Job {
   applications Application[]
 
   // @@index([companyId])
-  @@index([createdAt])
-  @@index([title])
+  // @@index([createdAt])
+  // @@index([title])
 }
 
 model Application {
-  id      String @id @default(uuid())
+  id      String 
   userId  String
   jobId   String
   status  ApplicationStatus @default(APPLIED)
@@ -49,10 +49,16 @@ model Application {
   user User @relation(fields: [userId], references: [id])
   job  Job  @relation(fields: [jobId], references: [id])
 
-  @@index([userId])
-  @@index([jobId])
-  @@index([status])
-  @@unique([userId, jobId])
+  @@id([id, createdAt])
+  @@index([createdAt])
+  @@index([status, createdAt])
+  @@index([jobId, createdAt])
+  @@index([userId, createdAt])
+}
+
+model ApplicationKey {
+  id           String   @id
+  createdAt    DateTime
 }
 
 enum ApplicationStatus {
